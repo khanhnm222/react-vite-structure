@@ -1,20 +1,22 @@
 import { createBrowserRouter } from "react-router";
-import Home from "../pages/Home/Home";
-import About from "../pages/About/About";
-import AuthLayout from "../layouts/AuthLayout";
-import Login from "../pages/Login/Login";
+import { AuthLayout } from "../layouts";
+import { lazy } from "react";
+
+const HomePage = lazy(() => import('../pages/Home/Home'));
+const AboutPage = lazy(() => import('../pages/About/About'));
+const LoginPage = lazy(() => import('../pages/Login/Login'));
 
 const routers = createBrowserRouter([
   {
     path: "/",
     children: [
-      { index: true, Component: Home },
-      { path: "about", Component: About },
+      { index: true, Component: HomePage },
+      { path: "about", Component: AboutPage },
       {
         path: "auth",
         Component: AuthLayout,
         children: [
-          { index: true, path: "login", Component: Login },
+          { index: true, path: "login", Component: LoginPage },
         ],
       },
     ],
